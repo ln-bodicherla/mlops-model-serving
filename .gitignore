@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Models and data
+models/
+data/
+artifacts/
+mlruns/
+mlartifacts/
+*.pkl
+*.joblib
+*.onnx
+*.pt
+*.pth
+
+# Docker
+*.log
+
+# Outputs
+outputs/
+logs/
+reports/
+*.html
+*.png
+*.jpg
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite3

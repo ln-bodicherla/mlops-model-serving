@@ -1,0 +1,84 @@
+version: "3.8"
+
+services:
+  model-server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: model-server
+    ports:
+      - "8000:8000"
+    environment:
+      - CONFIG_PATH=/app/configs/config.yaml
+      - MODEL_PATH=/app/models/champion.joblib
+      - CHALLENGER_MODEL_PATH=/app/models/challenger.joblib
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    volumes:
+      - ../models:/app/models:ro
+      - ../configs:/app/configs:ro
+    depends_on:
+      mlflow:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - mlops-net
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.10.0
+    container_name: mlflow-server
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=postgresql://mlflow:mlflow_pass@postgres:5432/mlflow
+      - MLFLOW_DEFAULT_ARTIFACT_ROOT=/mlflow/artifacts
+    volumes:
+      - mlflow-artifacts:/mlflow/artifacts
+    command: >
+      mlflow server
+      --backend-store-uri postgresql://mlflow:mlflow_pass@postgres:5432/mlflow
+      --default-artifact-root /mlflow/artifacts
+      --host 0.0.0.0
+      --port 5000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - mlops-net
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: mlflow-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=mlflow
+      - POSTGRES_PASSWORD=mlflow_pass
+      - POSTGRES_DB=mlflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mlflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - mlops-net
+
+volumes:
+  postgres-data:
+    driver: local
+  mlflow-artifacts:
+    driver: local
+
+networks:
+  mlops-net:
+    driver: bridge

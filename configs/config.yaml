@@ -1,0 +1,24 @@
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "model_serving"
+  registry_name: "production_model"
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  model_refresh_interval: 300
+
+drift:
+  reference_window: 10000
+  detection_window: 1000
+  psi_threshold: 0.2
+  ks_threshold: 0.05
+  check_interval: 3600
+
+ab_testing:
+  default_split:
+    champion: 0.9
+    challenger: 0.1
+  min_sample_size: 1000
+  significance_level: 0.05
