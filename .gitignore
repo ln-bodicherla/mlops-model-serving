@@ -1,65 +1,81 @@
-# Python
+
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-*.egg-info/
-*.egg
-dist/
-build/
-eggs/
-*.whl
-
-# Virtual environments
-.venv/
-venv/
-env/
-ENV/
-
-# IDE
+!.env.example
+!.env.sample
+.build/
+.DS_Store
+.eggs/
+.env
+.env.*
+.env.local
 .idea/
-.vscode/
-*.swp
-*.swo
-*~
+.ipynb_checkpoints/
 .project
 .settings/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Models and data
-models/
-data/
-artifacts/
-mlruns/
-mlartifacts/
-*.pkl
+.swiftpm/
+.venv/
+.vscode/
+*.app
+*.db
+*.db-shm
+*.db-wal
+*.egg
+*.egg-info/
+*.html
+*.ipa
 *.joblib
+*.jpg
+*.key
+*.log
 *.onnx
+*.pem
+*.pkl
+*.png
 *.pt
 *.pth
-
-# Docker
-*.log
-
-# Outputs
-outputs/
-logs/
-reports/
-*.html
-*.png
-*.jpg
-
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Environment variables
-.env
-.env.local
-
-# Database
-*.db
+*.py[cod]
+*.pyc
+*.secret
+*.so
+*.sqlite
 *.sqlite3
+*.swo
+*.swp
+*.whl
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*~
+*$py.class
+# Build
+# Database
+# Databases
+# Dependencies
+# Docker
+# Environment variables
+# IDE
+# Jupyter
+# Models and data
+# OS
+# Outputs
+# Python
+# Secrets
+# Virtual environments
+artifacts/
+build/
+credentials*
+data/
+DerivedData/
+desktop.ini
+dist/
+eggs/
+env/
+ENV/
+logs/
+mlartifacts/
+mlruns/
+models/
+node_modules/
+outputs/
+reports/
+Thumbs.db
+venv/
