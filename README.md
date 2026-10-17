@@ -1,6 +1,6 @@
 # MLOps Model Serving Pipeline
 
-An end-to-end ML model lifecycle management platform featuring MLflow experiment tracking, FastAPI model serving, Docker containerization, automated A/B testing, and data drift monitoring. Provides a production-grade infrastructure for deploying, monitoring, and iterating on machine learning models.
+An end-to-end ML model lifecycle management platform featuring MLflow experiment tracking, FastAPI model serving, Docker containerization, automated A/B testing, and data drift monitoring. Provides example infrastructure for deploying, monitoring, and iterating on machine learning models.
 
 ## Overview
 
